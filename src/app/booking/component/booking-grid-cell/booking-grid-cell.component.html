@@ -1,0 +1,10 @@
+<div *ngIf="bookingDetail!=='' && bookingDetail.ActionStatus!=='Blocked'" class="align-middle pl-2 bg-success"
+    style="height:75px">
+    <span class="font-weight-bold">{{bookingDetail.CustName}}</span><br>
+    <span>{{bookingDetail.BookingSource}}</span><br>
+    <span>Balance : {{bookingDetail.BalanceAmount}}</span>
+</div>
+<div *ngIf="bookingDetail!=='' && bookingDetail.ActionStatus==='Blocked'" class="align-middle pl-2"
+    style="height:75px;background-color: lightgrey">
+    <span>{{bookingDetail.ActionStatus}}</span>
+</div>

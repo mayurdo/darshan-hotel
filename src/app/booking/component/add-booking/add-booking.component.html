@@ -1,0 +1,185 @@
+<form class="p-5" [formGroup]="bookingForm">
+    <div class="row">
+        <div class="col-6">
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-4 pt-0">Booking Source</legend>
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Reception
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Fortune4
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
+                                value="option3">
+                            <label class="form-check-label" for="gridRadios3">
+                                Go-MMT
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                value="option1">
+                            <label class="form-check-label" for="gridRadios1">
+                                Booking.com
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                TravelGuru
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
+                                value="option3">
+                            <label class="form-check-label" for="gridRadios3">
+                                ClearTrip
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group row">
+                <label for="custName" class="col-4 col-form-label">Customer Name</label>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="custName" placeholder="Name" formControlName="CustName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="custCity" class="col-4 col-form-label">Customer City</label>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="custCity" placeholder="City" formControlName="CustCity">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="CustAdult" class="col-4 col-form-label">No of Guest</label>
+                <div class="col-4 input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Adult</div>
+                    </div>
+                    <input type="number" class="form-control" id="custAdult" formControlName="CustAdult">
+                </div>
+                <div class="col-3 input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Child</div>
+                    </div>
+                    <input type="number" class="form-control" id="custChild" formControlName="CustChild">
+                </div>
+            </div>           
+            <div class="form-group row">
+                <label for="onlinePayment" class="col-4 col-form-label">Online Payment</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="onlinePayment" (input)="calculateAmountAndPayment()" formControlName="OnlinePayment">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="swapPayment" class="col-4 col-form-label">Swap Payment</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="swapPayment" (input)="calculateAmountAndPayment()" formControlName="SwapPayment">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cashPayment" class="col-4 col-form-label">Cash Payment</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="cashPayment" (input)="calculateAmountAndPayment()" formControlName="CashPayment">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="otherPayment" class="col-4 col-form-label">Other Payment</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="otherPayment" (input)="calculateAmountAndPayment()" formControlName="OtherPayment">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="paymentRemark" class="col-4 col-form-label">Payment Remark</label>
+                <div class="col-4">
+                    <input type="text" class="form-control text-right" id="paymentRemark" formControlName="PaymentRemark">
+                </div>
+            </div>            
+        </div>
+        <div class="col-6">
+            <div class="form-group row">
+                <label for="checkInDate" class="col-4 col-form-label">CheckIn Date</label>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="checkInDate" formControlName="CheckInDate" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="roomType" class="col-4 col-form-label">Room Details</label>
+                <div class="col-7 input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">{{bookingForm.controls.RoomNumber.value}}</div>
+                    </div>
+                    <input type="text" class="form-control" id="roomType" formControlName="RoomType" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="roomTariff" class="col-4 col-form-label">Room Tariff</label>
+                <div class="col-4">
+                    <input type="text" class="form-control text-right" id="roomTariff" formControlName="RoomTariff" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="gst" class="col-4 col-form-label">GST</label>
+                <div class="col-4">
+                    <input type="text" class="form-control text-right" id="gst" formControlName="GST" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="total" class="col-4 col-form-label">Total</label>
+                <div class="col-4">
+                    <input type="text" class="form-control text-right" id="total" formControlName="Total" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="extraBed" class="col-4 col-form-label">Extra Bed</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="extraBed" formControlName="ExtraBed" (input)="calculateAmountAndPayment()">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="discount" class="col-4 col-form-label">Discount</label>
+                <div class="col-4">
+                    <input type="number" class="form-control text-right" id="discount" formControlName="Discount" (input)="calculateAmountAndPayment()">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="grossTotal" class="col-4 col-form-label">Gross Total</label>
+                <div class="col-4">
+                    <input type="text" class="form-control text-right" id="grossTotal" formControlName="GrossTotal" disabled>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="paidAmount" class="col-4 col-form-label">Paid Amount</label>
+                    <div class="col-4">
+                        <input type="text" class="form-control text-right" id="inputEmail3" formControlName="PaidAmount" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="BalanceAmount" class="col-4 col-form-label">Balance Amount</label>
+                    <div class="col-4">
+                        <input type="text" class="form-control text-right" id="BalanceAmount" formControlName="BalanceAmount" disabled>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="form-group row pt-2">
+        <div class="col-8 mx-auto">
+            <button type="submit" class="btn btn-primary">Neww Booking</button>
+        </div>
+    </div>
+</form>

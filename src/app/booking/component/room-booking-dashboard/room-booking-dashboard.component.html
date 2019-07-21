@@ -1,0 +1,35 @@
+<div class="p-5">
+    <div class="d-flex justify-content-center">
+        <div class="pb-2">
+            <button class="btn btn-link" (click)="goPriviousWeek()">&laquo; Previous</button>
+            <span class="p-3 font-weight-bold">Current Week ( {{ weekStartDate?.format('DD-MMM')}} to
+                {{weekEndDate?.format('DD-MMM')}})</span>
+            <button class="btn btn-link" (click)="goNextWeek()">Next &raquo;</button>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striper" id="booking-dashboard">
+        <thead>
+            <tr>
+                <th scope="col" rowspan="2">RNo</th>
+                <th scope="col" rowspan="2">Room Type</th>
+                <td scope="col" *ngFor="let date of dateList">{{getWeekDayName(date)}}</td>
+            </tr>
+            <tr>
+                <td scope="col" *ngFor="let date of dateList">{{date.format('DD-MMM')}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of roomDetails">
+                <td style="width: 100px" class="p-0">{{room.RoomNumber}}</td>
+                <td style="width: 200px" class="p-0">{{room.RoomType}}</td>
+                <td scope="col" *ngFor="let date of dateList" class="p-0" style="height:75px;cursor:pointer"
+                    (click)="goToAddBooking(room,date)">
+                    <div>
+                        <app-booking-grid-cell [bookingDetail]="getBookingDetail(room,date)"></app-booking-grid-cell>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
